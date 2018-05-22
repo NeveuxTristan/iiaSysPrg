@@ -1,0 +1,5 @@
+C:\Users\TNEVEU\RiderProjects\iiaSysPrg\BusApplication\bin\Debug\BusApplication.exe
+C:\Users\TNEVEU\RiderProjects\iiaSysPrg\BusApplication\bin\Debug\BusApplication.pdb
+C:\Users\TNEVEU\RiderProjects\iiaSysPrg\BusApplication\obj\Debug\BusApplication.csprojResolveAssemblyReference.cache
+C:\Users\TNEVEU\RiderProjects\iiaSysPrg\BusApplication\obj\Debug\BusApplication.exe
+C:\Users\TNEVEU\RiderProjects\iiaSysPrg\BusApplication\obj\Debug\BusApplication.pdb
