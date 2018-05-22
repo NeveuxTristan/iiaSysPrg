@@ -7,8 +7,10 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Bus.cs" t="Include" />
         <e p="BusApplication.csproj" t="IncludeRecursive" />
+        <e p="Client.cs" t="Include" />
         <e p="Ligne.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="Porte.cs" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
