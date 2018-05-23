@@ -1,25 +1,27 @@
 ﻿using System;
+using System.Threading;
 
 namespace BusApplication
 {
     public class Client
     {
-        private static int ID_REFERENCE = 1; 
-        
+        private static int ID_REFERENCE = 1;
+
         private int id;
         private bool possedeTitre;
+
+        private Random r = new Random();
 
         public Client()
         {
             id = ID_REFERENCE++;
-            Random r = new Random();
-            possedeTitre = r.Next(5000) < r.Next(5000);
+            possedeTitre = r.Next(0, 10) > 5;
+            Thread.Sleep(10);
         }
 
         public bool titreDeTransport()
         {
             return possedeTitre;
         }
-        
     }
 }

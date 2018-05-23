@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace BusApplication
+﻿namespace BusApplication
 {
     public class Bus
     {
@@ -8,7 +6,7 @@ namespace BusApplication
         private Porte porteAvant;
         private Porte porteCentrale;
         private Porte porteArriere;
-
+        
         private bool isDriving;
         private bool clientAttendSortie;
         private int nbPlacesOccupee;

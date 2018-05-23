@@ -7,27 +7,33 @@ namespace BusApplication
     {
         private static int ID_REFERENCE = 1;
 
-        private Boolean isRunning = true; 
+        private Boolean isRunning = true;
         private int id;
         private int nbClientAttente;
         private Random r = new Random();
 
-        public Station()
+        private Bus bus;
+
+        public Station(Bus bus)
         {
+            this.bus = bus;
             id = ID_REFERENCE++;
-            nbClientAttente = Math.Max(r.Next(10), r.Next(5));
+            refillAttente();
+
+            Console.WriteLine("Station n°" + id + " créée avec " + nbClientAttente + " personnes en attentes.");
         }
 
         public void refillAttente()
         {
-            nbClientAttente = Math.Max(r.Next(10), r.Next(5));
+            nbClientAttente = r.Next(0,8);
+            Thread.Sleep(10);
         }
 
         public void vieStation()
         {
             while (isRunning)
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 if (r.Next(1000) < r.Next(500))
                 {
                     nbClientAttente++;
@@ -49,6 +55,5 @@ namespace BusApplication
         {
             return nbClientAttente;
         }
-        
     }
 }
