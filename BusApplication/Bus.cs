@@ -204,5 +204,10 @@ namespace BusApplication
         {
             return nextStationIsTerminus;
         }
+
+        public int nbClientAttendSortie()
+        {
+            return clientAttendSortie;
+        }
     }
 }

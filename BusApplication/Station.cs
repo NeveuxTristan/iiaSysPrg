@@ -69,11 +69,11 @@ namespace BusApplication
         public void busArrive()
         {
             bool secu = true;
-            Client cl;
+            Client cl ;
             Console.WriteLine("----- STATION N°"+id+" ----- CLIENTS EN ATTENTE ("+nbClientAttente+") -----");
             Console.WriteLine("Le bus est arrivé à la station n°"+id);
             Thread.Sleep(2500);
-            while (secu && nbClientAttente > 0)
+            while (secu && nbClientAttente > 0 || bus.nbClientAttendSortie() >0)
             {
                 cl = new Client(bus);
                 if (!bus.enterCl(cl))

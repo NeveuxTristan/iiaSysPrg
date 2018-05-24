@@ -39,6 +39,7 @@ namespace BusApplication
             {
                 if (b.isBusDriving())
                 {
+                    Thread.Sleep(100);
                     if (!wantDescent)
                     {
                         wantDescent = r.Next(10000) > 7000;
@@ -71,6 +72,7 @@ namespace BusApplication
         public void terminate()
         {
             continuer = false;
+            thClient.Abort();
             Console.WriteLine("Le client n°"+id+", n'as pas pu monter dans le bus plein...");
         }
     }
