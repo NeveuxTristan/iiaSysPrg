@@ -36,9 +36,19 @@ namespace BusApplication
                 Thread.Sleep(2000);
                 if (r.Next(1000) < r.Next(500))
                 {
-                    nbClientAttente++;
+                    increment();
                 }
             }
+        }
+
+        private void increment()
+        {
+            Interlocked.Increment(ref nbClientAttente);
+        }
+        
+        private void decrement()
+        {
+            Interlocked.Decrement(ref nbClientAttente);
         }
 
         public void shutdown()
@@ -54,6 +64,17 @@ namespace BusApplication
         public int getNbClient()
         {
             return nbClientAttente;
+        }
+
+        public void busArrive()
+        {
+            while (nbClientAttente > 0 && bus.isFull())
+            {
+                if (bus.enterCl(new Client(bus)))
+                {
+                    
+                }
+            }
         }
     }
 }

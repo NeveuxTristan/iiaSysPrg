@@ -27,11 +27,18 @@ namespace BusApplication
                 stations.Add(s);
                 th.Start();
             }
+
+            this.bus.setLigne(this);
         }
 
         public Station getStationAtPosition(int id)
         {
             return stations.ElementAt(id);
+        }
+
+        public List<Station> getStations()
+        {
+            return stations;
         }
 
         public void revertLigne()
@@ -43,6 +50,7 @@ namespace BusApplication
                 s.refillAttente();
                 stationsRevert.Add(s);
             }
+
             stations.Clear();
             stations = stationsRevert;
         }

@@ -30,8 +30,9 @@ namespace BusApplication
                 }
             }
 
-            Ligne l = new Ligne(tailleLigne);
-            
+            Bus b = new Bus(nbPlaces);
+            Ligne l = new Ligne(tailleLigne,b);
+
         }
     }
 }
