@@ -33,8 +33,8 @@ namespace BusApplication
         {
             while (isRunning)
             {
-                Thread.Sleep(2000);
-                if (r.Next(1000) < r.Next(500))
+                Thread.Sleep(5000);
+                if (r.Next(1000) < r.Next(200))
                 {
                     increment();
                 }
@@ -68,11 +68,27 @@ namespace BusApplication
 
         public void busArrive()
         {
-            while (nbClientAttente > 0 && bus.isFull())
+            bool secu = true;
+            Client cl;
+            Console.WriteLine("----- STATION N°"+id+" ----- CLIENTS EN ATTENTE ("+nbClientAttente+") -----");
+            Console.WriteLine("Le bus est arrivé à la station n°"+id);
+            Thread.Sleep(2500);
+            while (secu && nbClientAttente > 0)
             {
-                if (bus.enterCl(new Client(bus)))
+                cl = new Client(bus);
+                if (!bus.enterCl(cl))
                 {
-                    
+                    cl.terminate();
+                    secu = false;
+                }
+                else
+                {
+                    decrement();
+                    Thread.Sleep(500);
+                    if (nbClientAttente == 0)
+                    { 
+                        secu = false;
+                    }
                 }
             }
         }

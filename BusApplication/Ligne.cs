@@ -31,11 +31,6 @@ namespace BusApplication
             this.bus.setLigne(this);
         }
 
-        public Station getStationAtPosition(int id)
-        {
-            return stations.ElementAt(id);
-        }
-
         public List<Station> getStations()
         {
             return stations;
@@ -44,14 +39,22 @@ namespace BusApplication
         public void revertLigne()
         {
             List<Station> stationsRevert = new List<Station>();
-            for (int i = stations.Count - 1; i <= 0; i--)
-            {
-                Station s = stations.ElementAt(i);
-                s.refillAttente();
-                stationsRevert.Add(s);
-            }
 
+            // ON inverse le sens de la ligne - on ignore donc la station actuelle càd la dernière station.
+            foreach (var st in stations)
+            {
+                if (st.getId() != stations.Count)
+                {
+                    st.refillAttente();
+                    stationsRevert.Add(st);
+                }
+                else
+                {
+                    st.shutdown();
+                }
+            }
             stations.Clear();
+            stationsRevert.Reverse();
             stations = stationsRevert;
         }
     }

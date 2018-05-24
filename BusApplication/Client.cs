@@ -12,6 +12,8 @@ namespace BusApplication
         private bool possedeTitre;
         private bool continuer = true;
 
+        private bool wantDescent = false;
+
         private Thread thClient;
 
         private Random r = new Random();
@@ -35,8 +37,41 @@ namespace BusApplication
         {
             while (continuer)
             {
-                
+                if (b.isBusDriving())
+                {
+                    if (!wantDescent)
+                    {
+                        wantDescent = r.Next(10000) > 7000;
+                        if (b.isNextStationIsTerminus() || wantDescent)
+                        {
+                            b.clWantToOut(getId());
+                            wantDescent = true;
+                        }
+
+                        Thread.Sleep(2000);
+                    }
+                }
+                else
+                {
+                    if (wantDescent)
+                    {
+                        b.descentCl(this);
+                        Thread.Sleep(r.Next(1000));
+                        continuer = false;
+                    }
+                }
             }
+        }
+
+        public int getId()
+        {
+            return id;
+        }
+
+        public void terminate()
+        {
+            continuer = false;
+            Console.WriteLine("Le client n°"+id+", n'as pas pu monter dans le bus plein...");
         }
     }
 }
