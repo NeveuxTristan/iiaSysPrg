@@ -42,7 +42,7 @@ namespace BusApplication
                     Thread.Sleep(100);
                     if (!wantDescent)
                     {
-                        wantDescent = r.Next(10000) > 7000;
+                        wantDescent = r.Next(10000) > 8000;
                         if (b.isNextStationIsTerminus() || wantDescent)
                         {
                             b.clWantToOut(getId());

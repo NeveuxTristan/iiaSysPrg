@@ -25,7 +25,7 @@ namespace BusApplication
 
         public void refillAttente()
         {
-            nbClientAttente = r.Next(0,8);
+            nbClientAttente = r.Next(0, 8);
             Thread.Sleep(10);
         }
 
@@ -45,7 +45,7 @@ namespace BusApplication
         {
             Interlocked.Increment(ref nbClientAttente);
         }
-        
+
         private void decrement()
         {
             Interlocked.Decrement(ref nbClientAttente);
@@ -69,12 +69,17 @@ namespace BusApplication
         public void busArrive()
         {
             bool secu = true;
-            Client cl ;
-            Console.WriteLine("----- STATION N°"+id+" ----- CLIENTS EN ATTENTE ("+nbClientAttente+") -----");
-            Console.WriteLine("Le bus est arrivé à la station n°"+id);
+            Client cl;
+            Console.WriteLine("----- STATION N°" + id + " ----- CLIENTS EN ATTENTE (" + nbClientAttente + ") -----");
+            Console.WriteLine("Le bus est arrivé à la station n°" + id);
             Thread.Sleep(2500);
-            while (secu && nbClientAttente > 0 || bus.nbClientAttendSortie() >0)
+            while (secu && nbClientAttente > 0 )
             {
+                if (bus.isFull() && bus.nbClientAttendSortie() >0 )
+                {
+                    Thread.Sleep(1000);  
+                    continue;
+                }
                 cl = new Client(bus);
                 if (!bus.enterCl(cl))
                 {
@@ -86,7 +91,7 @@ namespace BusApplication
                     decrement();
                     Thread.Sleep(500);
                     if (nbClientAttente == 0)
-                    { 
+                    {
                         secu = false;
                     }
                 }

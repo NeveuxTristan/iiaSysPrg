@@ -110,6 +110,7 @@ namespace BusApplication
                     }
                 }
             }
+            Thread.Sleep(2000);
             Console.WriteLine("---- FIN DE BUS SIMULATOR 2018 -----");
         }
 
@@ -120,7 +121,7 @@ namespace BusApplication
         {
             if (!isDriving)
             {
-                Console.WriteLine("Le bus démarre.");
+                Console.WriteLine("Le bus démarre. "+nbPlacesOccupee+"/"+nbPlacesTotal );
             }
             isDriving = true;
             Thread.Sleep(r.Next(4000, 8000));
@@ -144,21 +145,21 @@ namespace BusApplication
             }
 
             porteEntree.WaitOne();
+            Thread.Sleep(1500);
             if (nbPlacesOccupee - clientAttendSortie < nbPlacesTotal)
             {
                 Console.WriteLine("Client n°" + cl.getId() + " rentre dans le bus.");
-                Thread.Sleep(2000);
                 if (!cl.titreDeTransport())
                 {
-                    Console.WriteLine("Client n°" + cl.getId() + " achète un titre de transport.");
-                    Thread.Sleep(r.Next(3000));
+                    Thread.Sleep(r.Next(2500));
+                    Console.WriteLine("Client n°" + cl.getId() + " achète un titre de transport.");       
                 }
 
                 increment();
                 porteEntree.Release();
                 return true;
             }
-
+            porteEntree.Release();
             Console.WriteLine("Le bus est plein !");
             return false;
         }
