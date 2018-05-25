@@ -57,6 +57,12 @@ namespace BusApplication
             return nbPlacesOccupee == nbPlacesTotal;
         }
 
+        /**
+         * Le Bus fait un aller retour sur une ligne
+         * A chaque station, on regarde si la suivante est le terminus pour l'indiquer le cas échéant
+         * Si le bus est arrivé à une station, et qu'il y a des clients dedans, on annonce l'arrivé du bus
+         * Dans le cas ou le bus part du terminus, on annonce qu'il est sur le chemin retour
+         */
         public void comportement()
         {
             while (continuer)
@@ -136,6 +142,10 @@ namespace BusApplication
             return true;
         }
 
+        /**
+         * Retourne vrai si des clients ont pu monter
+         * Retourne false dans le cas contraire
+         */
         public bool enterCl(Client cl)
         {
             if (busSansVoyageur)
@@ -164,12 +174,16 @@ namespace BusApplication
             return false;
         }
 
+        
         public void descentCl(Client cl)
         {
             Thread thread = new Thread(() => descentCpt(cl));
             thread.Start();
         }
 
+        /**
+         * Fait descendre un client du bus et l'annonce dans la console
+         */
         private void descentCpt(Client cl)
         {
             porteSortie.WaitOne();

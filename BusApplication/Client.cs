@@ -33,6 +33,11 @@ namespace BusApplication
             return possedeTitre;
         }
 
+        /**
+         * Si le Bus est en train d'avancer, les clients ont une probabilité de vouloir descendre
+         * Ils descendent si le prochain arrêt est le terminus
+         * Sinon, dans le cas ou des clients veulent descendre, on les fait descendre
+         */
         private void comportement()
         {
             while (continuer)

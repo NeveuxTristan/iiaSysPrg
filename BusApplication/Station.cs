@@ -23,6 +23,9 @@ namespace BusApplication
             Console.WriteLine("Station n°" + id + " créée avec " + nbClientAttente + " personnes en attentes.");
         }
 
+        /**
+         * Remplis la file d'attente
+         */
         public void refillAttente()
         {
             nbClientAttente = r.Next(0, 8);
@@ -66,6 +69,13 @@ namespace BusApplication
             return nbClientAttente;
         }
 
+        /**
+         * Annonce l'arrivé d'un bus dans la statoin
+         * Si le bus est plein et des clients veulent sortir, on attend qu'un client sorte
+         * sinon on essaye de faire rentrer les clients de la station
+         * Si un client ne peut pas rentrer c'est que le bus est plein
+         * On léve donc la sécurité
+         */
         public void busArrive()
         {
             bool secu = true;

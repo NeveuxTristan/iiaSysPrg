@@ -36,6 +36,9 @@ namespace BusApplication
             return stations;
         }
 
+        /**
+         * Fonction qui inverse le sens de la ligne après passage au terminus
+         */
         public void revertLigne()
         {
             List<Station> stationsRevert = new List<Station>();
