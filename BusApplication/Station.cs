@@ -71,7 +71,6 @@ namespace BusApplication
             bool secu = true;
             Client cl;
             Console.WriteLine("----- STATION N°" + id + " ----- CLIENTS EN ATTENTE (" + nbClientAttente + ") -----");
-            Console.WriteLine("Le bus est arrivé à la station n°" + id);
             Thread.Sleep(2500);
             while (secu && nbClientAttente > 0 )
             {
